@@ -37,6 +37,7 @@ function addTodo(event){
 	//handling only spaces input
 	if (!todoInput.value.trim().length) {
 		alert("Please insert a valid task");
+		todoInput.value="";
 		return;
 	}
 
