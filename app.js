@@ -5,7 +5,7 @@ const todoList= document.querySelector(".todo-list");
 const tasks=document.querySelector(".tasksLeft");
 const filterOption= document.querySelector('.filter-todo');
 
-
+var taskCount=0;
 
 //event listner
 
@@ -51,7 +51,13 @@ function addTodo(event){
 	todoList.appendChild(todoDiv);
 
 	//clear todo input value
+
+	
 	todoInput.value="";
+	taskCount++;
+
+	document.querySelector("#count").innerText= taskCount;
+
 	
 }
 
@@ -61,24 +67,45 @@ function deleteCheck(e){
  	const item = e.target;
  	//delete todo
  	if(item.classList[0]=== 'trash-btn'){
- 		
+
  		const todo = item.parentElement;
+ 		if(todo.classList.contains('completed')){
+ 			
+ 			} else{taskCount--;}
+ 		
+ 		
  		todo.classList.add('fall');
  		todo.addEventListener('transitionend', function(){
  			
  				
  			
-
+			
  			
  			todo.remove();
+ 			
+ 			
  		});
+
+ 		document.querySelector("#count").innerText= taskCount;
+ 		return;
+
  		//todo.remove();
  	}
- 	if(item.classList[0]=== "complete-btn"){
+ 	else if(item.classList[0]=== "complete-btn"){
  		
  		const todo = item.parentElement;
+
+ 		if(todo.classList.contains('completed')){
+ 			taskCount++;
+ 		}else{
+ 			taskCount--;
+ 		}
  		todo.classList.toggle("completed");
+ 		
+
  	}
+
+ 	document.querySelector("#count").innerText= taskCount;
 
 }
 function filterTodo(e){
@@ -112,3 +139,32 @@ todos.forEach(function(todo, index){
 
 }
 
+// // task count
+// const allLiItem = document.getElementsByTagName("Li");
+
+
+
+
+// function taskCount(){
+
+// var i;
+// var totalTasks=0;
+// for(i=0; i<allLiItem.length;i++){
+
+		
+// 		if(allLiItem[i].classList.contains('completed')){
+// 			console.log("inside if loop");
+			
+// 		}
+// 		else{
+// 			totalTasks++;
+// 		}
+		
+// 		console.log("inside loop");
+// 	}
+// 	console.log("taskCount is",totalTasks);
+// 	
+
+
+
+// }

@@ -5,10 +5,15 @@
 }
 
 body{
-	background-image:  linear-gradient(130deg,midnightblue,skyblue);
+	background-image:  url("background.jpg") ;
+	background-repeat: no-repeat;
+	background-size: cover;
 	color: white;
 	font-family: "poppins", sans-serif;
 	min-height: 100vh;
+}
+img{
+	filter: brightness(50%);
 }
 header{
 	font-size: 1.5rem;
@@ -20,13 +25,19 @@ header,form{
 	align-items: center;
 
 }
+#taskCount{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-form input, form button{
+
+/*form input, form button{
 	padding: 0.5rem;
 	font-size: 2rem;
 	border: none;
 	background: white;
-}
+}*/
 form button{
 	color: white;
 	background: blue;
@@ -63,7 +74,7 @@ form button:hover {
 }
 
 .trash-btn, .complete-btn{
-	background: red ;
+	background:rgba(255,0,0, 0.7);
 	color: white;
 	border: none;
 	padding: 1rem;
@@ -71,9 +82,13 @@ form button:hover {
 	font-size: 1rem;
 
 }
+
 .complete-btn{
 
-	background-color: green;
+	background:rgba(0,255,0, 0.7);
+}
+button:focus{
+	outline: none;
 }
 
 .todo-item{
@@ -107,18 +122,28 @@ select{
 	overflow: hidden;
 }
 select {
-	color: midnightblue;
-	width: 10rem;
+	/*color: midnightblue;*/
+	width: 100%;
+	background:rgba(0,0,0, 0.3);
 	cursor: pointer;
-	padding: 1.1rem;
+	padding: 10px;
+	height: 45px;
+	color: white;
+	text-align: center;
+}
+input:focus{
+	outline: none;
+}
+#addBtn:focus{
+	outline: none;
 }
 .select::after {
-	content: "\25BC";
+	/*content: "\25BC";*/
 	position: absolute;
-	background: skyblue;
+	background: rgba(255,0,255, 0.3) ;
 	top: 0;
 	right: 0;
-	padding: 1rem;
+	padding: 4px;
 	pointer-events: none;
 	transition: all 0.3s ease;
 }
@@ -126,11 +151,40 @@ select {
 	background: white;
 	color:midnightblue;
 }
-.taskscount{
-	display: flex;
-	
+
+#container{
+	border-radius: 10px;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
 	justify-content: center;
 	align-items: center;
-
-	
+	background: rgba(255,255,255, 0.3);
+	width: 50vw;
+	height: auto;
+	min-height: 70vh;
+	position: relative;
 }
+
+input, #addBtn{
+	
+	height: 45px;
+
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: none;
+	/*background: white;*/
+}
+#addBtn{
+	width: 10%;
+	min-width: 50px;
+	background:rgba(255,255,0, 0.7);
+}
+
+input{
+	width: 60%;
+	margin-left: 5%;
+	background:rgba(0,0,0, 0.3);
+}
+
