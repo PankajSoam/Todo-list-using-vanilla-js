@@ -22,10 +22,15 @@
 	</div>
 
 	<form>
-		<input type="text" name="" class="todo-input" >
-		<button class="todo-button" type="submit" id="addBtn">
-			<h4>Add</h4>
+		<input type="text" name="" class="todo-input" > <!-- to take input from user -->
+
+		<button class="todo-button" type="submit" id="addBtn">  
+			<h4>Add</h4>     <!-- add btn to add text in input as li in ul -->
 		</button>
+
+
+		<!-- select to be used for filtering of tasks -->
+
 		<div class="select">
 		<select name="todos" class="filter-todo" >
 			<option value="all">All</option>
@@ -37,10 +42,11 @@
 		
 	</form>
 	
-
+		<!-- task shown after addition -->
 	<div class="todo-container">
 		<ul class="todo-list">
 			<div>
+				<!-- example of what li will look like, li will be added using js -->
 				<!-- <li>
 					<p>task name</p>
 					<button><i class="fas fa-check"></i></button>

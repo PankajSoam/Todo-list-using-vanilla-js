@@ -1,17 +1,25 @@
 //selectors
-const todoInput= document.querySelector(".todo-input");
+
+const todoInput= document.querySelector(".todo-input"); 
+
 const todoButton= document.querySelector(".todo-button");
+
 const todoList= document.querySelector(".todo-list");
+
 const tasks=document.querySelector(".tasksLeft");
+
 const filterOption= document.querySelector('.filter-todo');
 
-var taskCount=0;
+
+var taskCount=0; //will be used for counting uncompleted task
 
 //event listner
 
-todoButton.addEventListener("click", addTodo);
-todoList.addEventListener('click', deleteCheck);
-filterOption.addEventListener('change',filterTodo);
+todoButton.addEventListener("click", addTodo); //event listener when add button is clicked
+
+todoList.addEventListener('click', deleteCheck); //event listener when delete button is clicked or complete task button is clicked
+
+filterOption.addEventListener('change',filterTodo); //event listener to filter the different task category
 
 
 //functions
@@ -20,10 +28,13 @@ function addTodo(event){
 	//prevent form from submitting
 	event.preventDefault();
 
+
+	//preventing from adding empty task
 	if(todoInput.value==""){
 		alert("Please insert a task");
 		return;
 	}
+
 	//todo div
 	
 	const todoDiv = document.createElement('div');
@@ -54,6 +65,8 @@ function addTodo(event){
 
 	
 	todoInput.value="";
+
+	//update task count when new task is added
 	taskCount++;
 
 	document.querySelector("#count").innerText= taskCount;
@@ -61,19 +74,22 @@ function addTodo(event){
 	
 }
 
-
+//delete a task or mark as completed
 function deleteCheck(e){
-	//console.log(e.target);
+	
+
  	const item = e.target;
  	//delete todo
  	if(item.classList[0]=== 'trash-btn'){
 
  		const todo = item.parentElement;
  		if(todo.classList.contains('completed')){
- 			
- 			} else{taskCount--;}
+ 			//if the completed task is deleted then no need to modify taskcount
+ 			} else{
+ 				taskCount--; //if umcompleted task is deleted then decrease taskCount 
+ 			}
  		
- 		
+ 		//adding animation for deleting a task 
  		todo.classList.add('fall');
  		todo.addEventListener('transitionend', function(){
  			
@@ -85,7 +101,7 @@ function deleteCheck(e){
  			
  			
  		});
-
+ 		//updating taskCount
  		document.querySelector("#count").innerText= taskCount;
  		return;
 
@@ -95,11 +111,14 @@ function deleteCheck(e){
  		
  		const todo = item.parentElement;
 
+ 		// handling task count when marking completed or uncompleted
  		if(todo.classList.contains('completed')){
- 			taskCount++;
+ 			taskCount++; 
  		}else{
  			taskCount--;
  		}
+
+ 		//toggling class between completed and uncompleted
  		todo.classList.toggle("completed");
  		
 
@@ -108,14 +127,23 @@ function deleteCheck(e){
  	document.querySelector("#count").innerText= taskCount;
 
 }
+
+
+//function for handling filter task
 function filterTodo(e){
-const todos = [...todoList.children];
+const todos = [...todoList.children]; //collecting all children of ul tag
+
+//for each child of ul below function is performed in order to filter the list
 todos.forEach(function(todo, index){
 	switch (e.target.value) {
+
+		//showing all task
 		case "all":
 		todo.style.display= 'flex';
 		break;
 
+
+		//showing all completed task 
 		case "completed":
 		if(todo.classList.contains("completed")){
 			todo.style.display =' flex';
@@ -125,6 +153,9 @@ todos.forEach(function(todo, index){
 			todo.style.display = 'none';
 		}
 		break;
+
+
+		//showing all incomplete task
 		case "uncompleted" :
 				if(!todo.classList.contains("completed")){
 					todo.style.display = "flex";
@@ -138,6 +169,8 @@ todos.forEach(function(todo, index){
 });
 
 }
+
+//alternate function for taskcount
 
 // // task count
 // const allLiItem = document.getElementsByTagName("Li");
@@ -160,7 +193,7 @@ todos.forEach(function(todo, index){
 // 			totalTasks++;
 // 		}
 		
-// 		console.log("inside loop");
+// 		
 // 	}
 // 	console.log("taskCount is",totalTasks);
 // 	
